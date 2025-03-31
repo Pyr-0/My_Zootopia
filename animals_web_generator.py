@@ -21,21 +21,28 @@ def write_html(file_path, content):
 animals_data = load_data("animals_data.json")
 
 
+# Generate a string with all animal information
+output = ''
 for animal in animals_data:
-	# Print the name (all animals should have a name)
-	print(f"Name: {animal['name']}")
+	# Add the name
+	output += f"Name: {animal['name']}\n"
 		
-	# Print diet information (from the characteristics dictionary)
+	# Add diet information
 	if 'characteristics' in animal and 'diet' in animal['characteristics']:
-		print(f"Diet: {animal['characteristics']['diet']}")
+		output += f"Diet: {animal['characteristics']['diet']}\n"
 		
-	# Print the first location (if locations exist and have items)
+	# Add the first location
 	if 'locations' in animal and len(animal['locations']) > 0:
-		print(f"Location: {animal['locations'][0]}")
+		output += f"Location: {animal['locations'][0]}\n"
 		
-	# Print the type (if it exists)
+	# Add the type
 	if 'type' in animal:
-		print(f"Type: {animal['type']}")
+		output += f"Type: {animal['type']}\n"
 		
-	# Print an empty line after each animal for better readability
-	print()
+	output += "\n"
+
+template = read_template('animals_template.html')
+
+final_html = template.replace('__REPLACE_ANIMALS_INFO__', output)
+
+write_html('animals.html', final_html)
