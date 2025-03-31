@@ -1,0 +1,14 @@
+.animal-details {
+	list-style-type: none;
+	padding-left: 0;
+  }
+  
+  .detail-item {
+	margin-bottom: 8px;
+	padding-left: 5px;
+	border-left: 3px solid #e0e0e0;
+  }
+  
+  .detail-item strong {
+	color: #555;
+  }
